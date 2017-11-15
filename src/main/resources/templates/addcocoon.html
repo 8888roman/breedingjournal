@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Dziennik Hodowli</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <style>
+        .errors{
+            color:red;
+        }
+ </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container">
+    <form action="#" th:action="@{/addkokon/} + ${id}" th:object="${cocoonForm}" method="post">
+        <input type="hidden" name="id" value="${id}"/>
+
+        <div class="well">
+
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="cocoonNumber">Numer kokonu:</label>
+
+                        <input type="text" class="form-control" th:field="*{cocoonNumber}" placeholder="" id="cocoonNumber"/>
+
+
+                        <div class = "errors" th:if="${#fields.hasErrors('cocoonNumber')}" th:errors="*{cocoonNumber}">Title error message</div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <label for="cocoonPlaceDate">Data złożenia kokonu:</label>
+                        <input type="date" class="form-control" th:field="*{cocoonPlaceDate}" placeholder=""
+                               id="cocoonPlaceDate"/>
+                        <div class="errors" th:if="${#fields.hasErrors('cocoonPlaceDate')}" th:errors="*{cocoonPlaceDate}">Title
+                            error message
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="cocoonHatchDate">Data wyklucia:</label>
+                        <input type="date" class="form-control" th:field="*{cocoonHatchDate}" placeholder=""
+                               id="cocoonHatchDate"/>
+                        <div class="errors" th:if="${#fields.hasErrors('cocoonHatchDate')}" th:errors="*{cocoonHatchDate}">Title
+                            error message
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="cocoonTransferDate">Data przeniesienia:</label>
+                        <input type="date" class="form-control" th:field="*{cocoonTransferDate}" placeholder=""
+                               id="cocoonTransferDate"/>
+                        <div class="errors" th:if="${#fields.hasErrors('cocoonTransferDate')}" th:errors="*{cocoonTransferDate}">Title
+                            error message
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="comments">Uwagi:</label>
+                        <input type="text" class="form-control" th:field="*{comments}" placeholder=""
+                               id="comments"/>
+                        <div class="errors" th:if="${#fields.hasErrors('comments')}" th:errors="*{comments}">Title
+                            error message
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+
+                </div>
+
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-success btn-block">ZAPISZ</button>
+                </div>
+
+
+            </div>
+        </div>
+
+    </form>
+
+
+    <!--guzik wstecz-->
+    <a href="/" class="btn btn-default btn-lg">
+        <span class="glyphicon glyphicon-chevron-left"></span> Wstecz
+    </a>
+
+</div>
+</body>
+</html>

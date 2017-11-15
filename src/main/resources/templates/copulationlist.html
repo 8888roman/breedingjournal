@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Order Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> </meta>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <style>
+        .errors{
+            color:red;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <input class="form-control" id="myInput" type="text" placeholder="Search.."/>
+    <div th:if="${not #lists.isEmpty(copulations)}">
+        <table class="table table-stripped" >
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Data kopulacji</th>
+                <th>Nr samicy</th>
+                <th>Nr Samca</th>
+
+            </tr>
+            </thead>
+            <tbody id="myTable">
+            <tr th:each="copulation : ${copulations}" >
+                <td th:text="${copulation.id}"></td>
+                <td th:text="${copulation.copulationDate} ? ${#dates.format(copulation.copulationDate, 'dd-MM-yyyy')}"></td>
+                <td th:text="${copulation.femaleNumber}"></td>
+                <td th:text="${copulation.maleNumber}"></td>
+                <td><a th:href="@{/addcocoon/}+${copulation.id}"> Dodaj kokon</a></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--guzik wstecz-->
+    <a href="/" class="btn btn-default btn-lg">
+        <span class="glyphicon glyphicon-chevron-left"></span> Wstecz
+    </a>
+</div>
+
+
+</body>
+<script>
+     $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+</script>
+</html>
