@@ -23,7 +23,7 @@ public class CocoonController {
 
     @RequestMapping(value= "/addcocoon/{id}", method= RequestMethod.GET)
     public String addKokon(CocoonForm cocoonForm, @PathVariable("id") Long id, Model model) {
-        model.addAttribute("kopulacja", copulationRepository.findOne(id));
+        model.addAttribute("copulation", copulationRepository.findOne(id));
         return "addcocoon";
     }
 
@@ -42,18 +42,18 @@ public class CocoonController {
                                         cocoonForm.getComments()));
 
 
-        return "redirect:/listakopulacji";
+        return "redirect:/cocoonlist";
     }
 
     @RequestMapping(value = "/cocoonlist/{id}", method = RequestMethod.GET)
     public String showKokonById (@PathVariable("id") Long id, Model model) {
         model.addAttribute("cocoons", cocoonRepository.findByCopulationId(id));
-        return "cocoonlist";
+        return "cocoondetails";
 
     }
 
     @RequestMapping(value = "/cocoonlist", method = RequestMethod.GET)
-    public String showAllKopulacja(Model model) {
+    public String showAllCocoons(Model model) {
         model.addAttribute("cocoons", cocoonRepository.findAll());
         return "cocoonlist";
 
