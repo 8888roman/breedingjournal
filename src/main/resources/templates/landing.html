@@ -12,88 +12,19 @@
           th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
           rel="stylesheet" media="screen"/>
 
-
-    <style>
-    body {
-    /* The image used */
-    background-image: url("img/landing_bg.jpg");
-    background-color: #0b0d08;
-
-    /* Full height */
-    height: 100%;
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: auto;
-    }
-
-
-    .errors{
-            color:red;
-        }
-
-
-    h1 {
-          text-align: center;
-          font-size: 80px;
-          font-family: Arial, sans-serif;
-          color: #edbe00;
-          margin: 80px;
-          border-radius: 0px;
-    }
-
-    <!--.well {-->
-    <!--margin-top: 25px;-->
-    <!--background-color : #4a3b38;-->
-    <!--border: 0px;-->
-    <!--}-->
-
-    .btn-primary {
-    color: #c5c2c2;
-    background-color:#7d7f34;
-    border-color:#7d7f34;
-    }
-
-    label{
-     color: #c5c2c2;
-    }
-
-    .bg-overlay {
-    background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)),  url("img/landing_bg.jpg");
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-position: center center;
-    color: #fff;
-    height: 100%;
-    padding-top: 50px;
-    padding-bottom: 100px;
-    margin-top: 80px;
-}
-
-.form-control {
-  background: rgba(0,0,0,0.5);
-  width: 300;
-  position: relative;
-  font-size: 18px;
-  color: white;
-  height: auto;
-  padding: 0px;
-}
-
-    </style>
+    <link href="../static/css/style.css" th:href="@{../css/style.css}" rel="stylesheet" />
 
 
 </head>
 <body>
 
 <div class="container bg-overlay">
-    <h1><b>DZIENNIK HODOWLI</b></h1>
+
     <div class="col-sm-4">
     </div>
     <div class="col-sm-4">
+        <p class="h1">DZIENNIK HODOWLI</p>
 
-        <!--<div class="well">-->
 
             <div class="errors" th:if="${param.error}">
                 <div class="alert alert-danger">
@@ -122,8 +53,8 @@
 
 
         <!--</div>-->
-    </div>
+    </h1>
 </div>
-
+</div>
 </body>
 </html>

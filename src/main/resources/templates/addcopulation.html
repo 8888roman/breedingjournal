@@ -18,87 +18,15 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
-    <style>
-
-        body {
-            /* The image used */
-            background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("img/landing_bg.jpg");;
-            background-color: #0b0d08;
-
-            /* Full height */
-            height: 100%;
-
-            /* Center and scale the image nicely */
-            background-position: absolute;
-            background-repeat: no-repeat;
-            background-size: auto;
-
-            bottom: 0;
-        }
-
-        .errors {
-            color: red;
-        }
-
-        h1 {
-            text-align: center;
-            font-size: 80px;
-            font-family: Arial, sans-serif;
-            color: #edbe00;
-            margin: 80px;
-            border-radius: 0px;
-        }
-
-        .copyright {
-
-            position: absolute;
-            bottom: 0;
-            right: 0px;
-            color: #edbe00;
-            padding: 10px;
-            margin-bottom: 0px;
-            font-family: Arial, sans-serif;
-        }
-
-        .btn-primary {
-            color: #c5c2c2;
-            background-color: #7d7f34;
-            border-color: #7d7f34;
-        }
-
-        label {
-            color: #c5c2c2;
-        }
-
-        .bg-overlay {
-            background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("img/landing_bg.jpg");
-            background-repeat: no-repeat;
-            background-size: auto;
-            background-position: center center;
-            color: #fff;
-            height: 100%;
-            padding-top: 50px;
-            padding-bottom: 100px;
-            margin-top: 80px;
-        }
-
-        .form-control {
-            background: rgba(0, 0, 0, 0.5);
-            width: 300;
-            position: relative;
-            font-size: 18px;
-            color: white;
-            height: auto;
-            padding: 10px;
-        }
-    </style>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
 
 </head>
 
 <body>
-
+<div th:include="header :: header"></div>
 
 <div class="container">
+
     <form action="#" th:action="@{/addcopulation}" th:object="${copulationForm}" method="post">
 
 
@@ -135,13 +63,7 @@
 
                     });
                 </script>
-                        <!--<input type="date" class="form-control" th:field="*{copulationDate}" placeholder=""-->
-                               <!--id="copulationDate"/>-->
 
-
-                        <!--<div class="errors" th:if="${#fields.hasErrors('copulationDate')}"-->
-                             <!--th:errors="*{copulationDate}">Title error message-->
-                        <!--</div>-->
                     </div>
 
 

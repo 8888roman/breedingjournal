@@ -20,10 +20,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
               .antMatchers( "/css/**",
                       "/js/**",
-                      "/img/**",
                       "/**/favicon.ico",
                       "/webjars/**",
                       "/**/static/**",
+                      "/img/**",
                       "/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .permitAll();
-
+        http.authorizeRequests().antMatchers("/img/**").permitAll();
     }
 
     @Autowired
