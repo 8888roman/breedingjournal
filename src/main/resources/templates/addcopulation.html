@@ -30,34 +30,32 @@
     <form action="#" th:action="@{/addcopulation}" th:object="${copulationForm}" method="post">
 
 
-            <div class="container">
+        <div class="row">
+
                 <div class="col-sm-4">
                 </div>
-            <div class="row">
 
+                    <div class="col-sm-4">
 
-                    <div class="form-group" >
-                        <!--<label for="copulationDate">Data:</label>-->
+                    <div class="form-group">
+                        <label for="copulationDate">Data:</label>
                         <div class='input-group date' id='copulationDate'>
                             <div class="col-sm-4">
-                            <input type='hidden'  th:field="*{copulationDate}" class="form-control" />
-                            <!--<span class="input-group-addon">-->
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    <!--</span>-->
+                                <input type='hidden' th:field="*{copulationDate}" class="form-control"/>
+                                <!--<span class="input-group-addon">-->
+                                <!--<span class="glyphicon glyphicon-calendar"></span>-->
+                                <!--</span>-->
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                    </div>
-
 
                 </div>
 
+        </div>
 
 
 
-
-            <div class="row">
+        <div class="row">
                 <div class="col-sm-4">
                 </div>
                 <div class="col-sm-4">

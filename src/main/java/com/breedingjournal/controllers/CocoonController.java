@@ -48,6 +48,7 @@ public class CocoonController {
     @RequestMapping(value = "/cocoonlist/{id}", method = RequestMethod.GET)
     public String showKokonById (@PathVariable("id") Long id, Model model) {
         model.addAttribute("cocoons", cocoonRepository.findByCopulationId(id));
+        model.addAttribute("copulation", copulationRepository.findById(id));
         return "cocoondetails";
 
     }

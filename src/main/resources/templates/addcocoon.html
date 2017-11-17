@@ -16,125 +16,194 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
-
-    <style>
-        .errors{
-            color:red;
-        }
- </style>
-
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
 
 
 </head>
 
 <body>
-
+<div th:include="header :: header"></div>
 
 <div class="container">
     <form action="#" th:action="@{/addcocoon/} + ${id}" th:object="${cocoonForm}" method="post">
         <input type="hidden" name="id" value="${id}"/>
-
-        <div class="well">
-
-            <div class="row">
-
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="cocoonNumber">Numer kokonu:</label>
-
-                        <input type="text" class="form-control" th:field="*{cocoonNumber}" placeholder="" id="cocoonNumber"/>
-
-
-                        <div class = "errors" th:if="${#fields.hasErrors('cocoonNumber')}" th:errors="*{cocoonNumber}">Title error message</div>
-                    </div>
-
-
-                </div>
-
-
+        <div class="row">
+            <div class="col-sm-4">
             </div>
+            <div class="col-sm-4">
 
 
-            <div class="row">
+                <div class="row">
+                <div class="col-sm-4 ">
 
-                <div class="col-sm-9">
-                    <div class="form-group">
-                        <label for="cocoonPlaceDate">Data złożenia kokonu:</label>
-                        <input type="date" class="form-control" th:field="*{cocoonPlaceDate}" placeholder=""
-                               id="cocoonPlaceDate"/>
-                        <div class="errors" th:if="${#fields.hasErrors('cocoonPlaceDate')}" th:errors="*{cocoonPlaceDate}">Title
-                            error message
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="row">
-
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="cocoonHatchDate">Data wyklucia:</label>
-                        <input type="date" class="form-control" th:field="*{cocoonHatchDate}" placeholder=""
-                               id="cocoonHatchDate"/>
-                        <div class="errors" th:if="${#fields.hasErrors('cocoonHatchDate')}" th:errors="*{cocoonHatchDate}">Title
-                            error message
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="row">
-
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="cocoonTransferDate">Data przeniesienia:</label>
-                        <input type="date" class="form-control" th:field="*{cocoonTransferDate}" placeholder=""
-                               id="cocoonTransferDate"/>
-                        <div class="errors" th:if="${#fields.hasErrors('cocoonTransferDate')}" th:errors="*{cocoonTransferDate}">Title
-                            error message
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="row">
-
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="comments">Uwagi:</label>
-                        <input type="text" class="form-control" th:field="*{comments}" placeholder=""
-                               id="comments"/>
-                        <div class="errors" th:if="${#fields.hasErrors('comments')}" th:errors="*{comments}">Title
-                            error message
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col-sm-4">
+                    <i class="fa fa-venus fa-3x pull-left" aria-hidden="false"><th:block th:text="${copulation.femaleNumber}"/></i>
 
                 </div>
+                <div class="col-sm-4 ">
 
-                <div class="col-sm-4">
-                    <button type="submit" class="btn btn-success btn-block">ZAPISZ</button>
+                        <i class="fa fa-mars fa-3x pull-left" aria-hidden="false"><th:block th:text="${copulation.maleNumber}"/></i>
+
+
+                </div>
                 </div>
 
 
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="cocoonNumber">Numer kokonu:</label>
+
+                    <input type="text" class="form-control" th:field="*{cocoonNumber}" placeholder=""
+                           id="cocoonNumber"/>
+
+
+                    <div class="errors" th:if="${#fields.hasErrors('cocoonNumber')}" th:errors="*{cocoonNumber}">Title
+                        error message
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-4">
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="cocoonPlaceDate">Data złożenia:</label>
+                    <div class='input-group date' id='cocoonPlaceDate'>
+
+                        <input type="text" th:field="*{cocoonPlaceDate}" class="form-control"/>
+                        <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-4">
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="cocoonHatchDate">Data przełożenia:</label>
+                    <div class='input-group date' id='cocoonHatchDate'>
+
+                        <input type="text" th:field="*{cocoonHatchDate}" class="form-control"/>
+                        <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-4">
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="cocoonTransferDate">Data przeniesienia:</label>
+                    <div class='input-group date' id='cocoonTransferDate'>
+
+                        <input type="text" th:field="*{cocoonTransferDate}" class="form-control"/>
+                        <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-sm-4">
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="comments">Uwagi:</label>
+                    <textarea class="form-control" rows="5" th:field="*{comments}" id="comments"></textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-lg btn-primary btn-block">ZAPISZ</button>
+            </div>
+
+
+        </div>
+
 
     </form>
 
-
-    <!--guzik wstecz-->
-    <a href="/" class="btn btn-default btn-lg">
-        <span class="glyphicon glyphicon-chevron-left"></span> Wstecz
-    </a>
-
 </div>
 </body>
+<script type="text/javascript">
+    $(function () {
+        $('#cocoonPlaceDate').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayBtn: 'linked',
+            todayHighlight: true,
+            defaultDate: 'now'
+
+        });
+
+    });
+
+    $(function () {
+        $('#cocoonHatchDate').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayBtn: 'linked',
+            todayHighlight: true,
+            defaultDate: 'now'
+
+        });
+
+    });
+
+    $(function () {
+        $('#cocoonTransferDate').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayBtn: 'linked',
+            todayHighlight: true,
+            defaultDate: 'now'
+
+        });
+
+    });
+</script>
 </html>

@@ -14,19 +14,17 @@
             th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    <style>
-        .errors{
-            color:red;
-        }
-    </style>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
 
 </head>
 
 <body>
-
+<div th:include="header :: header"></div>
 <div class="container">
-    <div th:include="header :: header"></div>
-    <input class="form-control" id="myInput" type="text" placeholder="Search.."/>
+    <div class="col-sm-4">
+        <input class="form-control" id="myInput" type="text" placeholder="Wyszukaj.."/>
+    </div>
+    <div class="col-sm-12">
     <div th:if="${not #lists.isEmpty(copulations)}">
         <table class="table table-stripped" >
             <thead>
@@ -35,6 +33,7 @@
                 <th>Data kopulacji</th>
                 <th>Nr samicy</th>
                 <th>Nr Samca</th>
+                <th></th>
 
             </tr>
             </thead>
@@ -50,10 +49,7 @@
             </tbody>
         </table>
     </div>
-    <!--guzik wstecz-->
-    <a href="/" class="btn btn-default btn-lg">
-        <span class="glyphicon glyphicon-chevron-left"></span> Wstecz
-    </a>
+    </div>
 </div>
 
 

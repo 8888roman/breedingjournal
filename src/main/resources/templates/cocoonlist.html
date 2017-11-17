@@ -14,27 +14,29 @@
             th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    <style>
-        .errors{
-            color:red;
-        }
-    </style>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
 
 </head>
 
 <body>
-
+<div th:include="header :: header"></div>
 <div class="container">
+    <div class="col-sm-4">
+        <input class="form-control" id="myInput" type="text" placeholder="Wyszukaj.."/>
+    </div>
+    <div class="col-sm-12">
     <div th:if="${not #lists.isEmpty(cocoons)}">
         <table class="table table-stripped">
+            <thead>
             <tr>
                 <th>Numer</th>
                 <th>Data złożenia</th>
                 <th>Data wyklucia</th>
                 <th>Data przeniesienia</th>
-                <th>Szczegóły</th>
+                <th></th>
 
             </tr>
+            </thead>
             <tr th:each="cocoon : ${cocoons}">
                 <td th:text="${cocoon.cocoonNumber}"></td>
                 <td th:text="${cocoon.cocoonPlaceDate} ? ${#dates.format(cocoon.cocoonPlaceDate, 'dd-MM-yyyy')}"></td>
@@ -45,12 +47,19 @@
             </tr>
         </table>
     </div>
-    <!--guzik wstecz-->
-    <a href="/" class="btn btn-default btn-lg">
-        <span class="glyphicon glyphicon-chevron-left"></span> Wstecz
-    </a>
+
+</div>
 </div>
 
-
 </body>
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
 </html>
