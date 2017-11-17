@@ -31,38 +31,22 @@
 
 
             <div class="container">
-                <div class="row">
-
-                        <div class="form-group">
-
+                <div class="col-sm-4">
                 </div>
-            </div>
             <div class="row">
 
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="copulationDate">Data:</label>
+
+                    <div class="form-group" >
+                        <!--<label for="copulationDate">Data:</label>-->
                         <div class='input-group date' id='copulationDate'>
-                            <input type='text'  th:field="*{copulationDate}" class="form-control" />
-                            <span class="input-group-addon">
+                            <div class="col-sm-4">
+                            <input type='hidden'  th:field="*{copulationDate}" class="form-control" />
+                            <!--<span class="input-group-addon">-->
                         <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+                    <!--</span>-->
                         </div>
                     </div>
                 </div>
-                <script type="text/javascript">
-                    $(function () {
-                        $('#copulationDate').datepicker({
-                            format: 'yyyy-mm-dd',
-                            autoclose : true,
-                            todayBtn : 'linked',
-                            todayHighlight : true,
-                            defaultDate:'now'
-
-                        });
-
-                    });
-                </script>
 
                     </div>
 
@@ -74,8 +58,9 @@
 
 
             <div class="row">
-
-                <div class="col-sm-9">
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
                     <div class="form-group">
                         <label for="femaleNumber">Nr samicy:</label>
                         <input type="text" class="form-control" th:field="*{femaleNumber}" placeholder=""
@@ -91,8 +76,9 @@
 
 
             <div class="row">
-
-                <div class="col-sm-3">
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
                     <div class="form-group">
                         <label for="maleNumber">Nr samca:</label>
                         <input type="text" class="form-control" th:field="*{maleNumber}" placeholder=""
@@ -117,14 +103,24 @@
 
             </div>
 
+        <script type="text/javascript">
+            $(function () {
+                $('#copulationDate').datepicker({
+                    format: 'yyyy-mm-dd',
+                    autoclose : true,
+                    todayBtn : 'linked',
+                    todayHighlight : true,
+                    defaultDate:'now'
+
+                });
+
+            });
+        </script>
 
     </form>
 
 
-    <!--guzik wstecz-->
-    <a href="/" class="btn btn-default btn-lg">
-        <span class="glyphicon glyphicon-chevron-left"></span> Wstecz
-    </a>
+
 
 </div>
 </body>

@@ -12,7 +12,7 @@
           th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
           rel="stylesheet" media="screen"/>
 
-    <link href="../static/css/style.css" th:href="@{../css/style.css}" rel="stylesheet" />
+    <link href="../static/css/login.css" th:href="@{../css/login.css}" rel="stylesheet" />
 
 
 
@@ -40,7 +40,7 @@
             </div>
 
             <form th:action="@{/login}" method="post">
-
+                <div class="form-group">
                 <label for="username"> Użytkownik :</label>
                 <input id="username" type="text" name="username" class="form-control"  />
                 <br/>
@@ -50,6 +50,7 @@
 
                 <br/>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj</button>
+                </div>
             </form>
 
 

@@ -25,7 +25,7 @@
 <body>
 
 <div class="container">
-
+    <div th:include="header :: header"></div>
     <input class="form-control" id="myInput" type="text" placeholder="Search.."/>
     <div th:if="${not #lists.isEmpty(copulations)}">
         <table class="table table-stripped" >

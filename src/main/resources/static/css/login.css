@@ -1,0 +1,70 @@
+
+body {
+    /* The image used */
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background: #0b0d08 url("../img/landing_bg.jpg") no-repeat center;
+    background-size: auto;
+}
+
+.errors {
+    color: red;
+}
+
+/*.form-group label{*/
+
+    /*color: #FFF3C9;*/
+/*}*/
+h1 {
+    text-align: center;
+    /*font-size: 5rem;*/
+    font-family: Arial, sans-serif;
+    color: #edbe00;
+    /*margin: 80px;*/
+    border-radius: 0px;
+}
+
+.copyright {
+
+    position: absolute;
+    bottom: 0;
+    right: 0px;
+    color: #edbe00;
+    padding: 10px;
+    margin-bottom: 0px;
+    font-family: Arial, sans-serif;
+}
+
+.btn-primary {
+    color: #FFF3C9;
+    background-color: #7d7f34;
+    border-color: #7d7f34;
+}
+
+label {
+    color: #c5c2c2;
+}
+
+.bg-overlay {
+    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("../img/landing_bg.jpg");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center center;
+    color: #fff;
+    height: 100%;
+    padding-top: 50px;
+    padding-bottom: 100px;
+    margin-top: 80px;
+}
+
+.form-control {
+    background: rgba(0, 0, 0, 0.5);
+    width: 300;
+    position: relative;
+    font-size: 18px;
+    color: white;
+    height: auto;
+    padding: 10px;
+}
