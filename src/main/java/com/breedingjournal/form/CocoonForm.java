@@ -2,14 +2,18 @@ package com.breedingjournal.form;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.util.Date;
 
 /**
  * Created by Roman on 2017-10-07.
  */
 public class CocoonForm {
-
-    private int cocoonNumber;
+    @NotNull(message = "nie moze byc puste")
+    private Long cocoonNumber;
+    @Past
+    @NotNull(message = "nie moze byc puste")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date cocoonPlaceDate;
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -21,7 +25,7 @@ public class CocoonForm {
     public CocoonForm() {
     }
 
-    public CocoonForm(int cocoonNumber, Date cocoonPlaceDate, Date cocoonHatchDate, Date cocoonTransferDate, String comments) {
+    public CocoonForm(Long cocoonNumber, Date cocoonPlaceDate, Date cocoonHatchDate, Date cocoonTransferDate, String comments) {
         this.cocoonNumber = cocoonNumber;
         this.cocoonPlaceDate = cocoonPlaceDate;
         this.cocoonHatchDate = cocoonHatchDate;
@@ -29,11 +33,11 @@ public class CocoonForm {
         this.comments = comments;
     }
 
-    public int getCocoonNumber() {
+    public Long getCocoonNumber() {
         return cocoonNumber;
     }
 
-    public void setCocoonNumber(int cocoonNumber) {
+    public void setCocoonNumber(Long cocoonNumber) {
         this.cocoonNumber = cocoonNumber;
     }
 

@@ -62,13 +62,9 @@
                 <div class="form-group">
                     <label for="cocoonNumber">Numer kokonu:</label>
 
-                    <input type="text" class="form-control" th:field="*{cocoonNumber}" placeholder=""
+                    <input type="text" class="form-control" th:field="*{cocoonNumber}" placeholder=" "
                            id="cocoonNumber"/>
-
-
-                    <div class="errors" th:if="${#fields.hasErrors('cocoonNumber')}" th:errors="*{cocoonNumber}">Title
-                        error message
-                    </div>
+                    <p class="alert alert-danger" th:if="${#fields.hasErrors('cocoonNumber')}" th:errors="*{cocoonNumber}"></p>
                 </div>
 
 
@@ -88,11 +84,14 @@
                     <div class='input-group date' id='cocoonPlaceDate'>
 
                         <input type="text" th:field="*{cocoonPlaceDate}" class="form-control"/>
+
                         <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                         </span>
+
                     </div>
                 </div>
+                <p class="alert alert-danger" th:if="${#fields.hasErrors('cocoonPlaceDate')}" th:errors="*{cocoonPlaceDate}"></p>
             </div>
 
         </div>

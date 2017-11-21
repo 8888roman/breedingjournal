@@ -17,8 +17,9 @@ public class Cocoon {
     private long id;
     @ManyToOne
     private Copulation copulation;
-    @NotNull
-    private int cocoonNumber;
+//    @NotNull(message = "nie moze byc puste")
+    private long cocoonNumber;
+//    @NotNull(message = "nie moze byc puste")
    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date cocoonPlaceDate;
    @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -30,7 +31,7 @@ public class Cocoon {
     public Cocoon() {
     }
 
-    public Cocoon(Copulation copulation, int cocoonNumber, Date cocoonPlaceDate, Date cocoonHatchDate, Date cocoonTransferDate, String comments) {
+    public Cocoon(Copulation copulation, Long cocoonNumber, Date cocoonPlaceDate, Date cocoonHatchDate, Date cocoonTransferDate, String comments) {
         this.copulation = copulation;
         this.cocoonNumber = cocoonNumber;
         this.cocoonPlaceDate = cocoonPlaceDate;
@@ -55,11 +56,11 @@ public class Cocoon {
         this.copulation = copulation;
     }
 
-    public int getCocoonNumber() {
+    public long getCocoonNumber() {
         return cocoonNumber;
     }
 
-    public void setCocoonNumber(int cocoonNumber) {
+    public void setCocoonNumber(long cocoonNumber) {
         this.cocoonNumber = cocoonNumber;
     }
 
