@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Dziennik Hodowli</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+
+
+</head>
+
+<body>
+<div th:include="header :: header"></div>
+
+<div class="container">
+    <form action="#" th:action="@{/editcocoon/} + ${id}" th:object="${cocoonForm}" method="post">
+        <input type="hidden" name="id" value="${id}"/>
+        <div class="row">
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-4">
+
+
+                <div class="row">
+                <div class="col-sm-4 ">
+
+                    <i class="fa fa-venus fa-3x pull-left" aria-hidden="false"><th:block th:text="${copulation.femaleNumber}"/></i>
+
+                </div>
+                <div class="col-sm-4 ">
+
+                        <i class="fa fa-mars fa-3x pull-left" aria-hidden="false"><th:block th:text="${copulation.maleNumber}"/></i>
+
+
+                </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="cocoonNumber">Numer kokonu:</label>
+
+                    <input type="text" class="form-control" th:field="${cocoons.cocoonNumber}"  id="cocoonNumber"/>
+                    <p class="alert alert-danger" th:if="${#fields.hasErrors('cocoonNumber')}" th:errors="*{cocoonNumber}"></p>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-4">
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="cocoonPlaceDate">Data złożenia:</label>
+                    <div class='input-group date' id='cocoonPlaceDate'>
+
+                        <input type="text" th:field="${cocoons.cocoonPlaceDate}" class="form-control"/>
+
+                        <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+
+                    </div>
+                </div>
+                <p class="alert alert-danger" th:if="${#fields.hasErrors('cocoonPlaceDate')}" th:errors="*{cocoonPlaceDate}"></p>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-4">
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="cocoonHatchDate">Data przełożenia:</label>
+                    <div class='input-group date' id='cocoonHatchDate'>
+
+                        <input type="text" th:field="${cocoons.cocoonHatchDate}" class="form-control"/>
+                        <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-4">
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="cocoonTransferDate">Data przeniesienia:</label>
+                    <div class='input-group date' id='cocoonTransferDate'>
+
+                        <input type="text" th:field="${cocoons.cocoonTransferDate}" class="form-control"/>
+                        <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-sm-4">
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="comments">Uwagi:</label>
+                    <textarea class="form-control" rows="5" th:field="${cocoons.comments}" id="comments"></textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-lg btn-primary btn-block">ZAPISZ</button>
+            </div>
+
+
+        </div>
+
+
+    </form>
+
+</div>
+</body>
+<script type="text/javascript">
+    $(function () {
+        $('#cocoonPlaceDate').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayBtn: 'linked',
+            todayHighlight: true,
+            defaultDate: 'now'
+
+        });
+
+    });
+
+    $(function () {
+        $('#cocoonHatchDate').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayBtn: 'linked',
+            todayHighlight: true,
+            defaultDate: 'now'
+
+        });
+
+    });
+
+    $(function () {
+        $('#cocoonTransferDate').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayBtn: 'linked',
+            todayHighlight: true,
+            defaultDate: 'now'
+
+        });
+
+    });
+</script>
+</html>

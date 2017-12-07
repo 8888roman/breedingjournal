@@ -17,6 +17,9 @@ import javax.validation.Valid;
 
 @Controller
 public class CocoonController {
+    /**
+     *
+     */
     @Autowired
     private CopulationRepository copulationRepository;
     @Autowired
@@ -50,11 +53,30 @@ public class CocoonController {
     @RequestMapping(value = "/cocoonlist/{id}", method = RequestMethod.GET)
     public String showKokonById (CocoonForm cocoonForm, @PathVariable("id") Long id, Model model) {
         model.addAttribute("copulation", copulationRepository.findOne(id));
-        model.addAttribute("cocoons", cocoonRepository.findByCopulationId(id));
+        model.addAttribute("cocoons", cocoonRepository.findOne(id));
 
-        return "addcocoon";
+        return "editcocoon";
 
     }
+
+    @RequestMapping(value = "/editcocoon/{id}", method = RequestMethod.POST)
+    public String editCocoon(@Valid CocoonForm cocoonForm,  BindingResult bindingResult,@PathVariable("id") Long id, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("cocoons", cocoonRepository.findOne(id));
+            return "/editcocoon/{id}";
+        }
+
+        Cocoon cocoonEdited = cocoonRepository.findOne(id);
+        cocoonEdited.setCocoonNumber(cocoonForm.getCocoonNumber());
+        cocoonEdited.setCocoonPlaceDate(cocoonForm.getCocoonPlaceDate());
+        cocoonEdited.setCocoonHatchDate(cocoonForm.getCocoonHatchDate());
+        cocoonEdited.setCocoonTransferDate(cocoonForm.getCocoonTransferDate());
+        cocoonEdited.setComments(cocoonForm.getComments());
+        cocoonRepository.save(cocoonEdited);
+
+        return "redirect:/cocoonlist";
+    }
+
 
     @RequestMapping(value = "/cocoonlist", method = RequestMethod.GET)
     public String showAllCocoons(Model model) {
