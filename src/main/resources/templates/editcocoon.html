@@ -60,10 +60,10 @@
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="cocoonNumber">Numer kokonu:</label>
+                    <p>Numer kokonu:</p>
 
-                    <input type="text" class="form-control" th:field="${cocoons.cocoonNumber}"  id="cocoonNumber"/>
-                    <p class="alert alert-danger" th:if="${#fields.hasErrors('cocoonNumber')}" th:errors="*{cocoonNumber}"></p>
+                    <h3 th:text="${cocoons.cocoonNumber}"  id="cocoonNumber"/>
+                    <!--<p class="alert alert-danger" th:if="${#fields.hasErrors('cocoonNumber')}" th:errors="*{cocoonNumber}"></p>-->
                 </div>
 
 
