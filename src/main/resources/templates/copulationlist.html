@@ -17,7 +17,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-confirmation/1.0.7/bootstrap-confirmation.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-confirmation/1.0.7/bootstrap-confirmation.min.js"></script>
 
     <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
 
@@ -50,7 +50,11 @@
                     <td th:text="${copulation.maleNumber}"></td>
                     <td><a th:href="@{/addcocoon/}+${copulation.id}"> Dodaj kokon</a></td>
                     <td><div sec:authorize="hasRole('ADMIN')">
-                        <a th:href="@{/copulationlist/}+${copulation.id}" th:method="DELETE"> Usuń kopulacje</a>
+
+                        <form th:action="@{/copulationlist/delete/}+${copulation.id}" method="post">
+
+                             <button type="submit" name="delete" class="btn-error">USUŃ</button>
+                        </form>
                     </div></td>
 
 

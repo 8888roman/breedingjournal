@@ -50,10 +50,11 @@ public class CocoonController {
         return "redirect:/cocoonlist";
     }
 
-    @RequestMapping(value = "/cocoonlist/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/editcocoon/{id}", method = RequestMethod.GET)
     public String showKokonById (CocoonForm cocoonForm, @PathVariable("id") Long id, Model model) {
-        model.addAttribute("copulation", copulationRepository.findOne(id));
+        Cocoon cocoon = cocoonRepository.findOne(id);
         model.addAttribute("cocoons", cocoonRepository.findOne(id));
+        model.addAttribute("copulation", copulationRepository.findById(cocoon.getCopulation().getId()));
 
         return "editcocoon";
 

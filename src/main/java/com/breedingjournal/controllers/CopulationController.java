@@ -3,6 +3,7 @@ package com.breedingjournal.controllers;
 
 import com.breedingjournal.domain.Copulation;
 import com.breedingjournal.form.CopulationForm;
+import com.breedingjournal.repositories.CocoonRepository;
 import com.breedingjournal.repositories.CopulationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,8 @@ public class CopulationController {
 
     @Autowired
     private CopulationRepository copulationRepository;
+    @Autowired
+    private CocoonRepository cocoonRepository;
 
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -73,10 +76,11 @@ public class CopulationController {
 
     }
 
-    @RequestMapping(value = "/copulationlist/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/copulationlist/delete/{id}", method = RequestMethod.POST)
     public String deleteCopulation(@PathVariable("id") Long id) {
-       copulationRepository.delete(id);
-        return "copulationlist";
+        cocoonRepository.delete(cocoonRepository.findByCopulationId(id));
+        copulationRepository.delete(id);
+        return "redirect:/copulationlist";
 
     }
 
