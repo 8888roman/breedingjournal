@@ -42,7 +42,7 @@
                 <td th:text="${cocoon.cocoonPlaceDate} ? ${#dates.format(cocoon.cocoonPlaceDate, 'dd-MM-yyyy')}"></td>
                 <td th:text="${cocoon.cocoonHatchDate} ? ${#dates.format(cocoon.cocoonHatchDate, 'dd-MM-yyyy')}"></td>
                 <td th:text="${cocoon.cocoonTransferDate} ? ${#dates.format(cocoon.cocoonTransferDate, 'dd-MM-yyyy')}"></td>
-                <td><a th:href="@{/cocoonlist/} + ${cocoon.id}"> Szczegóły </a></td>
+                <td><a th:href="@{/editcocoon/} + ${cocoon.id}"> Szczegóły </a></td>
 
             </tr>
         </table>

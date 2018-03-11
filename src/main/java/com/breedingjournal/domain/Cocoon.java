@@ -27,6 +27,8 @@ public class Cocoon {
    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date cocoonTransferDate;
     private String comments;
+    @Version
+    private Long version;
 
     public Cocoon() {
     }
@@ -38,6 +40,9 @@ public class Cocoon {
         this.cocoonHatchDate = cocoonHatchDate;
         this.cocoonTransferDate = cocoonTransferDate;
         this.comments = comments;
+
+
+
     }
 
     public long getId() {
@@ -94,5 +99,13 @@ public class Cocoon {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 }

@@ -63,17 +63,25 @@ public class CocoonController {
     @RequestMapping(value = "/editcocoon/{id}", method = RequestMethod.POST)
     public String editCocoon(@Valid CocoonForm cocoonForm,  BindingResult bindingResult,@PathVariable("id") Long id, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("cocoons", cocoonRepository.findOne(id));
+            model.addAttribute("cocoons", this.cocoonRepository.findOne(id));
             return "/editcocoon/{id}";
         }
 
-        Cocoon cocoonEdited = cocoonRepository.findOne(id);
-        cocoonEdited.setCocoonNumber(cocoonForm.getCocoonNumber());
-        cocoonEdited.setCocoonPlaceDate(cocoonForm.getCocoonPlaceDate());
-        cocoonEdited.setCocoonHatchDate(cocoonForm.getCocoonHatchDate());
-        cocoonEdited.setCocoonTransferDate(cocoonForm.getCocoonTransferDate());
-        cocoonEdited.setComments(cocoonForm.getComments());
-        cocoonRepository.save(cocoonEdited);
+//        Cocoon cocoonEdited = cocoonRepository.findOne(id);
+//        cocoonEdited.setCocoonNumber(cocoonForm.getCocoonNumber());
+//        cocoonEdited.setCocoonPlaceDate(cocoonForm.getCocoonPlaceDate());
+//        cocoonEdited.setCocoonHatchDate(cocoonForm.getCocoonHatchDate());
+//        cocoonEdited.setCocoonTransferDate(cocoonForm.getCocoonTransferDate());
+//        cocoonEdited.setComments(cocoonForm.getComments());
+        cocoonRepository.save(cocoonRepository.findOne(id),
+
+                cocoonRepository.findOne(id).getCopulation(),
+
+                                        cocoonForm.getCocoonNumber(),
+                                        cocoonForm.getCocoonHatchDate(),
+                                        cocoonForm.getCocoonPlaceDate(),
+                                        cocoonForm.getCocoonTransferDate(),
+                                        cocoonForm.getComments());
 
         return "redirect:/cocoonlist";
     }
