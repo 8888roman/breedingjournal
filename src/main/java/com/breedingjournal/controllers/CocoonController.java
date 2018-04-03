@@ -63,14 +63,14 @@ public class CocoonController {
 
     }
 
-    @RequestMapping(value = "/editcocoon/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/editcocoon/delete/{id}", method = RequestMethod.GET)
     @ResponseBody
     public void delete(@PathVariable("id") Long id) {
 
 
 
 
-          cocoonRepository.removeById(id);
+          cocoonRepository.delete(cocoonRepository.findById(id));
 
 
 
