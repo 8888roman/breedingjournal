@@ -9,8 +9,8 @@ import java.util.List;
 public interface CocoonRepository extends CrudRepository <Cocoon, Long>{
     List<Cocoon> findById (Long id);
     List<Cocoon> findByCopulationId (Long id);
-    @Transactional
-    List<Cocoon> deleteCocoonById (Long id);
+
+   void removeById (Long id);
 
 
 }
