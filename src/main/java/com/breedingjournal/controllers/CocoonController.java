@@ -27,26 +27,26 @@ public class CocoonController {
     @Autowired
     private CocoonRepository cocoonRepository;
 
-    @RequestMapping(value= "/addcocoon/{id}", method= RequestMethod.GET)
+    @RequestMapping(value = "/addcocoon/{id}", method = RequestMethod.GET)
     public String addKokon(CocoonForm cocoonForm, @PathVariable("id") Long id, Model model) {
         model.addAttribute("copulation", copulationRepository.findOne(id));
         return "addcocoon";
     }
 
     @RequestMapping(value = "/addcocoon/{id}", method = RequestMethod.POST)
-    public String addNewKokon(@Valid CocoonForm cocoonForm,  BindingResult bindingResult,@PathVariable("id") Long id, Model model) {
+    public String addNewKokon(@Valid CocoonForm cocoonForm, BindingResult bindingResult, @PathVariable("id") Long id, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("copulation", copulationRepository.findOne(id));
             return "addcocoon";
         }
 
 
-        cocoonRepository.save(new Cocoon( copulationRepository.findOne(id),
-                                        cocoonForm.getCocoonNumber(),
-                                        cocoonForm.getCocoonPlaceDate(),
-                                        cocoonForm.getCocoonHatchDate(),
-                                        cocoonForm.getCocoonTransferDate(),
-                                        cocoonForm.getComments()));
+        cocoonRepository.save(new Cocoon(copulationRepository.findOne(id),
+                cocoonForm.getCocoonNumber(),
+                cocoonForm.getCocoonPlaceDate(),
+                cocoonForm.getCocoonHatchDate(),
+                cocoonForm.getCocoonTransferDate(),
+                cocoonForm.getComments()));
 
 
         return "redirect:/cocoonlist";
@@ -54,7 +54,7 @@ public class CocoonController {
 
     @RequestMapping(value = "/editcocoon/{id}", method = RequestMethod.GET)
 
-    public String showKokonById (CocoonForm cocoonForm, @PathVariable("id") Long id, Model model) {
+    public String showKokonById(CocoonForm cocoonForm, @PathVariable("id") Long id, Model model) {
         Cocoon cocoon = cocoonRepository.findOne(id);
         model.addAttribute("cocoons", cocoonRepository.findOne(id));
         model.addAttribute("copulation", copulationRepository.findById(cocoon.getCopulation().getId()));
@@ -63,16 +63,12 @@ public class CocoonController {
 
     }
 
-    @RequestMapping(value = "/editcocoon/delete/{id}", method = RequestMethod.GET)
-    @ResponseBody
+    @RequestMapping(value = "/editcocoon/delete/{id}", method = RequestMethod.POST)
+
     public void delete(@PathVariable("id") Long id) {
 
 
-
-
-          cocoonRepository.delete(cocoonRepository.findById(id));
-
-
+        cocoonRepository.delete(id);
 
 
     }
