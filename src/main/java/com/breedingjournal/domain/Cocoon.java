@@ -15,7 +15,7 @@ public class Cocoon {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @JoinColumn(name = "cocoon_ID")
     private long id;
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.REMOVE)
     private Copulation copulation;
 //    @NotNull(message = "nie moze byc puste")
     private long cocoonNumber;

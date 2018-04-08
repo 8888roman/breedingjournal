@@ -78,7 +78,7 @@ public class CopulationController {
 
     @RequestMapping(value = "/copulationlist/delete/{id}", method = RequestMethod.POST)
     public String deleteCopulation(@PathVariable("id") Long id) {
-        cocoonRepository.delete(cocoonRepository.findByCopulationId(id));
+//        cocoonRepository.delete(cocoonRepository.findByCopulationId(id));
         copulationRepository.delete(id);
         return "redirect:/copulationlist";
 

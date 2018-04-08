@@ -21,7 +21,7 @@ public class Copulation {
     private Date copulationDate;
     private Integer femaleNumber;
     private Integer maleNumber;
-    @OneToMany(mappedBy = "copulation")
+    @OneToMany(mappedBy = "copulation",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Cocoon> cocoonList;
 
 

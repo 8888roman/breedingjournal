@@ -11,6 +11,7 @@ import java.util.Date;
  */
 public class CopulationForm {
     @Past
+    @NotNull(message = "Wybierz datę kopulacji")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date copulationDate;
     @NotNull(message = "Wpisz nr samicy")

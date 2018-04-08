@@ -46,6 +46,10 @@
                                 <!--<span class="glyphicon glyphicon-calendar"></span>-->
                                 <!--</span>-->
                             </div>
+                            <div class="errors" th:if="${#fields.hasErrors('copulationDate')}" th:errors="*{copulationDate}">
+                                Title
+                                error message
+                            </div>
                         </div>
                     </div>
 

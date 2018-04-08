@@ -65,12 +65,15 @@ public class CocoonController {
 
     @RequestMapping(value = "/editcocoon/delete/{id}", method = RequestMethod.POST)
 
-    public void delete(@PathVariable("id") Long id) {
+    public String delete(@PathVariable("id") Long id) {
+
+        Cocoon cocoon = cocoonRepository.findOne(id);
+        cocoon.setCopulation(null);
 
 
         cocoonRepository.delete(id);
 
-
+        return "redirect:/cocoonlist";
     }
 
 
