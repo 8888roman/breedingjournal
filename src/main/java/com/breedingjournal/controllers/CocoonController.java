@@ -1,9 +1,12 @@
 package com.breedingjournal.controllers;
 
+import com.breedingjournal.WebSecurityConfig;
 import com.breedingjournal.domain.Cocoon;
 import com.breedingjournal.form.CocoonForm;
 import com.breedingjournal.repositories.CocoonRepository;
 import com.breedingjournal.repositories.CopulationRepository;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +30,12 @@ public class CocoonController {
     @Autowired
     private CocoonRepository cocoonRepository;
 
+    private static final Logger logger = LogManager.getLogger("CocoonController");
+
     @RequestMapping(value = "/addcocoon/{id}", method = RequestMethod.GET)
     public String addKokon(CocoonForm cocoonForm, @PathVariable("id") Long id, Model model) {
         model.addAttribute("copulation", copulationRepository.findOne(id));
+
         return "addcocoon";
     }
 
@@ -37,6 +43,7 @@ public class CocoonController {
     public String addNewKokon(@Valid CocoonForm cocoonForm, BindingResult bindingResult, @PathVariable("id") Long id, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("copulation", copulationRepository.findOne(id));
+
             return "addcocoon";
         }
 
@@ -48,7 +55,7 @@ public class CocoonController {
                 cocoonForm.getCocoonTransferDate(),
                 cocoonForm.getComments()));
 
-
+        logger.info("dodano kokon");
         return "redirect:/cocoonlist";
     }
 
@@ -63,6 +70,30 @@ public class CocoonController {
 
     }
 
+
+    @RequestMapping(value = "/editcocoon/{id}", method = RequestMethod.POST)
+    public String editKokon(@Valid CocoonForm cocoonForm, BindingResult bindingResult, @PathVariable("id") Long id, Model model) {
+        Cocoon cocoon = cocoonRepository.findOne(id);
+        if (bindingResult.hasErrors()) {
+
+            model.addAttribute("copulation", copulationRepository.findOne(id));
+            model.addAttribute("copulation", copulationRepository.findById(cocoon.getCopulation().getId()));
+            return "editcocoon";
+        }
+
+
+        cocoon.setCocoonNumber(cocoonForm.getCocoonNumber());
+        cocoon.setCocoonPlaceDate(cocoonForm.getCocoonPlaceDate());
+        cocoon.setCocoonHatchDate(cocoonForm.getCocoonHatchDate());
+        cocoon.setCocoonTransferDate(cocoonForm.getCocoonTransferDate());
+        cocoon.setComments(cocoonForm.getComments());
+        cocoonRepository.save(cocoon);
+
+        logger.info("zmieniono kokon nr: " + cocoon.getCocoonNumber());
+        return "redirect:/cocoonlist";
+    }
+
+
     @RequestMapping(value = "/editcocoon/delete/{id}", method = RequestMethod.POST)
 
     public String delete(@PathVariable("id") Long id) {
@@ -72,7 +103,7 @@ public class CocoonController {
 
 
         cocoonRepository.delete(id);
-
+        logger.info("usunieto kokon : " + id);
         return "redirect:/cocoonlist";
     }
 

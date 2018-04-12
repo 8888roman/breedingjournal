@@ -1,0 +1,9 @@
+body {
+    /* The image used */
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background: #0b0d08 url("../img/500.jpg") no-repeat center;
+    background-size: auto;
+}

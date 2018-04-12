@@ -1,0 +1,23 @@
+
+<Configuration status="info" name="FE" packages="">
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <File name="FILE" fileName="logs/logfile.log" append="true">
+            <PatternLayout pattern="%-5p | %d{yyyy-MM-dd HH:mm:ss} | [%t] %C{2} (%F:%L) - %m%n"/>
+        </File>
+
+    </Appenders>
+
+    <Loggers>
+        <Logger name="CocoonController" level="info"/>
+
+        <Root level="info">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="FILE"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
