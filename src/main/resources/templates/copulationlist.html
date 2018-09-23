@@ -19,7 +19,7 @@
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-confirmation/1.0.7/bootstrap-confirmation.min.js"></script>
 
-    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+    <!--<link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>-->
 
 </head>
 
@@ -48,12 +48,12 @@
                     <td th:text="${copulation.copulationDate} ? ${#dates.format(copulation.copulationDate, 'dd-MM-yyyy')}"></td>
                     <td th:text="${copulation.femaleNumber}"></td>
                     <td th:text="${copulation.maleNumber}"></td>
-                    <td><a th:href="@{/addcocoon/}+${copulation.id}"> Dodaj kokon</a></td>
+                    <td><a href="@{/addcocoon/}+${copulation.id}" type="button" class="btn btn-info" th:href="@{/addcocoon/}+${copulation.id}" > Dodaj kokon</a></td>
                     <td><div sec:authorize="hasRole('ADMIN')">
 
                         <form th:action="@{/copulationlist/delete/}+${copulation.id}" method="post">
 
-                             <button type="submit" name="delete" class="btn-error">USUŃ</button>
+                             <button type="submit" name="delete" class="btn btn-danger">USUŃ</button>
                         </form>
                     </div></td>
 

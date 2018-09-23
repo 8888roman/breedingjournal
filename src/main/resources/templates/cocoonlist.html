@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
     <title>Order Manager</title>
@@ -42,13 +43,13 @@
                 <td th:text="${cocoon.cocoonPlaceDate} ? ${#dates.format(cocoon.cocoonPlaceDate, 'dd-MM-yyyy')}"></td>
                 <td th:text="${cocoon.cocoonHatchDate} ? ${#dates.format(cocoon.cocoonHatchDate, 'dd-MM-yyyy')}"></td>
                 <td th:text="${cocoon.cocoonTransferDate} ? ${#dates.format(cocoon.cocoonTransferDate, 'dd-MM-yyyy')}"></td>
-                <td><a th:href="@{/editcocoon/} + ${cocoon.id}"> Szczegóły </a></td>
-                <td>
+                <td><a href="@{/editcocoon/} + ${cocoon.id}" type="button" class="btn btn-info" th:href="@{/editcocoon/} + ${cocoon.id}"> Szczegóły </a></td>
+                <td><div sec:authorize="hasRole('ADMIN')">
                     <form th:action="@{/editcocoon/delete/}+${cocoon.id}" method="post">
 
-                        <button type="submit" name="delete" class="btn-error">USUŃ</button>
+                        <button type="submit" name="delete" class="btn btn-danger">USUŃ</button>
                     </form>
-
+                </div>
                 </td>
 
 
