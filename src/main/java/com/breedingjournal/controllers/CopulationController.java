@@ -40,7 +40,13 @@ public class CopulationController {
 
 //    String loggedUser = SecurityContextHolder.getContext().getAuthentication().getName();
 
+    public String printUser() {
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        return name;
+
+    }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model) {
@@ -73,8 +79,7 @@ public class CopulationController {
         copulationRepository.save(new Copulation(copulationForm.getCopulationDate(),
                                                copulationForm.getFemaleNumber(),
                                                copulationForm.getMaleNumber()));
-
-        logger.info("Copulation saved by:" + "date="+copulationForm.getCopulationDate()+" female="+copulationForm.getFemaleNumber()+ " male="+copulationForm.getMaleNumber());
+        logger.info("Copulation SAVED by:" +printUser() + ", date="+copulationForm.getCopulationDate()+", female="+copulationForm.getFemaleNumber()+ ", male="+copulationForm.getMaleNumber());
         return "redirect:/copulationlist";
     }
     @RequestMapping(value = "/copulationlist", method = RequestMethod.GET)
@@ -88,6 +93,9 @@ public class CopulationController {
     public String deleteCopulation(@PathVariable("id") Long id) {
 //        cocoonRepository.delete(cocoonRepository.findByCopulationId(id));
         copulationRepository.delete(id);
+
+        logger.info("Copulation DELETE by:" +printUser() + ", id=" + id);
+
         return "redirect:/copulationlist";
 
     }
