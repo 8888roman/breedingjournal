@@ -1,23 +1,27 @@
-
-<Configuration status="info" name="FE" packages="">
-
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
-        <File name="FILE" fileName="logs/logfile.log" append="true">
-            <PatternLayout pattern="%-5p | %d{yyyy-MM-dd HH:mm:ss} | [%t] %C{2} (%F:%L) - %m%n"/>
+        <File name="breedingjournal" fileName="logs/breedingjournal.log">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
         </File>
-
+        <File name="rootfile" fileName="logs/root.log">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
     </Appenders>
-
     <Loggers>
-        <Logger name="CocoonController" level="info"/>
-
-        <Root level="info">
-            <AppenderRef ref="STDOUT"/>
-            <AppenderRef ref="FILE"/>
+        <Logger name="journal" level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="breedingjournal"/>
+        </Logger>
+        <Root level="error">
+            <AppenderRef ref="rootfile"/>
         </Root>
     </Loggers>
-
 </Configuration>

@@ -5,10 +5,12 @@ import com.breedingjournal.domain.Copulation;
 import com.breedingjournal.form.CopulationForm;
 import com.breedingjournal.repositories.CocoonRepository;
 import com.breedingjournal.repositories.CopulationRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +18,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,10 +29,17 @@ import javax.validation.Valid;
 @Controller
 public class CopulationController {
 
+    private static final Logger logger = LogManager.getLogger("journal");
+
+
     @Autowired
     private CopulationRepository copulationRepository;
     @Autowired
     private CocoonRepository cocoonRepository;
+
+
+//    String loggedUser = SecurityContextHolder.getContext().getAuthentication().getName();
+
 
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -66,7 +74,7 @@ public class CopulationController {
                                                copulationForm.getFemaleNumber(),
                                                copulationForm.getMaleNumber()));
 
-
+        logger.info("Copulation saved by:" + "date="+copulationForm.getCopulationDate()+" female="+copulationForm.getFemaleNumber()+ " male="+copulationForm.getMaleNumber());
         return "redirect:/copulationlist";
     }
     @RequestMapping(value = "/copulationlist", method = RequestMethod.GET)

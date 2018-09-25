@@ -4,18 +4,20 @@
 
 <head>
     <title>Order Manager</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> </meta>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
           th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
-          rel="stylesheet" media="screen" />
+          rel="stylesheet" media="screen"/>
 
     <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
             th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 
-    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
 
 </head>
 
@@ -26,39 +28,40 @@
         <input class="form-control" id="myInput" type="text" placeholder="Wyszukaj.."/>
     </div>
     <div class="col-sm-12">
-    <div th:if="${not #lists.isEmpty(cocoons)}">
-        <table class="table table-stripped">
-            <thead>
-            <tr>
-                <th>Numer</th>
-                <th>Data złożenia</th>
-                <th>Data wyklucia</th>
-                <th>Data przeniesienia</th>
-                <th></th>
+        <div th:if="${not #lists.isEmpty(cocoons)}">
+            <table class="table table-stripped">
+                <thead>
+                <tr>
+                    <th>Numer</th>
+                    <th>Data złożenia</th>
+                    <th>Data wyklucia</th>
+                    <th>Data przeniesienia</th>
+                    <th></th>
 
-            </tr>
-            </thead>
-            <tr th:each="cocoon : ${cocoons}">
-                <td th:text="${cocoon.cocoonNumber}"></td>
-                <td th:text="${cocoon.cocoonPlaceDate} ? ${#dates.format(cocoon.cocoonPlaceDate, 'dd-MM-yyyy')}"></td>
-                <td th:text="${cocoon.cocoonHatchDate} ? ${#dates.format(cocoon.cocoonHatchDate, 'dd-MM-yyyy')}"></td>
-                <td th:text="${cocoon.cocoonTransferDate} ? ${#dates.format(cocoon.cocoonTransferDate, 'dd-MM-yyyy')}"></td>
-                <td><a href="@{/editcocoon/} + ${cocoon.id}" type="button" class="btn btn-info" th:href="@{/editcocoon/} + ${cocoon.id}"> Szczegóły </a></td>
-                <td><div sec:authorize="hasRole('ADMIN')">
-                    <form th:action="@{/editcocoon/delete/}+${cocoon.id}" method="post">
+                </tr>
+                </thead>
+                <tr th:each="cocoon : ${cocoons}">
+                    <td th:text="${cocoon.cocoonNumber}"></td>
+                    <td th:text="${cocoon.cocoonPlaceDate} ? ${#dates.format(cocoon.cocoonPlaceDate, 'dd-MM-yyyy')}"></td>
+                    <td th:text="${cocoon.cocoonHatchDate} ? ${#dates.format(cocoon.cocoonHatchDate, 'dd-MM-yyyy')}"></td>
+                    <td th:text="${cocoon.cocoonTransferDate} ? ${#dates.format(cocoon.cocoonTransferDate, 'dd-MM-yyyy')}"></td>
+                    <td><a href="@{/editcocoon/} + ${cocoon.id}" type="button" class="btn btn-info"
+                           th:href="@{/editcocoon/} + ${cocoon.id}"> Szczegóły </a></td>
+                    <td>
+                        <div sec:authorize="hasRole('ADMIN')">
+                            <form th:action="@{/editcocoon/delete/}+${cocoon.id}" method="post">
 
-                        <button type="submit" name="delete" class="btn btn-danger">USUŃ</button>
-                    </form>
-                </div>
-                </td>
+                                <button type="submit" name="delete" class="btn btn-danger">USUŃ</button>
+                            </form>
+                        </div>
+                    </td>
 
 
+                </tr>
+            </table>
+        </div>
 
-            </tr>
-        </table>
     </div>
-
-</div>
 </div>
 
 </body>
